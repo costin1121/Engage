@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+            <h1>Welcome to Engage!</h1>
+			<div class="modal fade" id="login">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Log in to Eng@ge!</h4>
+						</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-lg-6 col-lg-offset-3">
+									<div class="text-center">
+										<h3>
+											<a href="./">ENG@GE!</a>
+										</h3>
+									</div>
+									<form method="POST" action="{{ url_for('login') }}">
+									    {% if message %}
+									    	<span style="color:red;">{{ message }}</span>
+									    {% endif %}
+										{{ form.csrf_token }}
+										<div class="form-group">
+											{{ form.username(class='form-control', placeholder='Username') }}
+											{% for error in form.username.errors %}
+					    						<li style="color:red;">{{ error }}</li>
+					    					{% endfor %}
+										</div>
+										<div class="form-group">
+											{{ form.password(class='form-control', placeholder='Password') }}
+											{% for error in form.password.errors %}
+					    						<li style="color:red;">{{ error }}</li>
+					    					{% endfor %}
+										</div>
+										<div class="form-group">
+											<div class="checkbox-inline">
+												<label>
+													{{ form.remember }}
+													Remember Me
+												</label>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<button type="submit" class="btn btn-danger btn-block">Login</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+{% endblock %}
